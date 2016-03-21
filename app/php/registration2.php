@@ -34,7 +34,7 @@ class registration extends page_public
                             "Подтвердите свою заявку по предложенной ссылке: " .
                             "http://site.ru/activate.php?hash=" . $hash_code;
                         if (!mail($user_email, $subject, $message, 'From: ' . $from))
-                            echo "<center><a href='./registration_form.php'>Вы не правильно указали почту.</a>";
+                            echo "<center><a href='./page_registrationpage_registration.php'>Вы не правильно указали почту.</a>";
                         else {
                             $conn = $this->ConnectDB();
                             $conn->query("insert into users values (
@@ -52,13 +52,13 @@ class registration extends page_public
                             echo "</center><center><a href='./index.php'>На указанный почтовый ящик отправлено письмо с ссылкой для активации вашего личного кабинета.</a></center>";
                         }
                     } else
-                        echo '<center><a href="./registration_form.php">Такой email уже есть в системе.</a></center>';
+                        echo '<center><a href="./page_registration.php">Такой email уже есть в системе.</a></center>';
                 } else
-                    echo '<center><a href="./registration_form.php">Такой логин уже есть в системе.</a></center>';
+                    echo '<center><a href="./page_registration.php">Такой логин уже есть в системе.</a></center>';
             } else
-                echo '<center><a href="./registration_form.php">Пароли не совпадают.</a></center>';
+                echo '<center><a href="./page_registration.php">Пароли не совпадают.</a></center>';
         } else
-            echo '<center><a href="./registration_form.php">Вы заполнили не все поля формы регистрации.</a></center>';
+            echo '<center><a href="./page_registration.php">Вы заполнили не все поля формы регистрации.</a></center>';
     }
 }
 

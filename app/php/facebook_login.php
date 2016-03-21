@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_public.php');
+require_once(__DIR__ . '/page_public.php');
 require_once(__DIR__ . '/rb.php');
 
 class FacebookLogin extends page_public
@@ -21,7 +21,7 @@ class FacebookLogin extends page_public
             'scope' => 'email,user_birthday'
         );
         //if (empty($_GET['code'])) {
-            echo $link = '<p><a href = "' . $url . '?' . urldecode(http_build_query($params)) . '"><img src="./app/images/google_plus_login.png"></a></p>';
+            echo $link = '<p><a href = "' . $url . '?' . urldecode(http_build_query($params)) . '"><img src="./app/images/facebook_login.png"></a></p>';
         //}
 
         if (isset($_GET['code'])) {
@@ -50,13 +50,30 @@ class FacebookLogin extends page_public
         }
 
         if ($result) {
+            $username = $userInfo['name'];
             $_SESSION['username'] = $userInfo['name'];
             $this->ConnectDB();
-            $users = R::dispense('users');
-            $searchuser = $this->
+
+            $checkuser = R::findOne('users','user_login = ?',[$username]);
+            if(!$checkuser){
+                $users = R::dispense('users');
+                $users['user_login'] = $userInfo['name'];
+                $users['user_password'] = null;
+                $users['user_email'] = $userInfo['email'];
+                $users['user_gender'] = $userInfo['gender'];
+                $users['user_birthday'] = $userInfo['birthday'];
+                $users['user_googleid'] = $userInfo['id'];
+                $users['user_link_to_profile'] = $userInfo['link'];
+                R::store($users);
+                header("Location: http://localhost:8080/IOMusicProject/app/php/page_search_public.php");
+            }else{
+                header("Location: http://localhost:8080/IOMusicProject/app/php/page_search_public.php");
+            }
+
+
             //echo "Здравствуйте ".$userInfo['name'].". Вы выполнили вход!<br>";
             //$this->setInterval(function(){
-            header("Location: http://localhost:8080/IOMusicProject/app/php/page_search_public.php");
+
             //},3000);
             //var_dump($_SESSION);
             //echo "Социальный ID пользователя: " . $userInfo['id'] . '<br />';

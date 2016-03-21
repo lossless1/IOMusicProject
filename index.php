@@ -44,7 +44,7 @@ class index extends page_public
                     echo "
                 <td ><a href = './index.php'> Вход</a ></td >";
                 } ?>
-                <td><a href="./app/php/registration_form.php">Форма регистрации</a></td>
+                <td><a href="./app/php/page_registration.php">Форма регистрации</a></td>
                 <td><a href="./app/php/page_search_public.php">Поиск</a></td>
                 <td><a href="./app/php/debug.php">Debug Site</a></td>
                 <td><a href="./app/php/user/index.php">Личный кабинет</a></td>

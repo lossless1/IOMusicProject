@@ -1,5 +1,6 @@
 <?php
 // подключаем файл с классом dataprocessing
+require_once(__DIR__ . '/rb.php');
 require_once(__DIR__ . '/dataprocessing.php');
 
 // создаем класс для отображения общедоступных страниц скрипта page_user
@@ -40,7 +41,7 @@ class page_public extends dataprocessing
                     echo "
                 <td ><a href = '../../index.php'> Вход</a ></td >";
                 } ?>
-                <td><a href="./registration_form.php">Форма регистрации</a></td>
+                <td><a href="./page_registration.php">Форма регистрации</a></td>
                 <td><a href="./page_search_public.php">Поиск</a></td>
                 <td><a href="./debug.php">Debug Site</a></td>
                 <td><a href="./user/index.php">Личный кабинет</a></td>

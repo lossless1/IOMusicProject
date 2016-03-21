@@ -1,5 +1,6 @@
 <?php
 include "./rb.php";
+require_once(__DIR__ . '/page_public.php');
 
 class Upload
 {
@@ -29,7 +30,7 @@ class Upload
 
         }
     }
-    public function CreateDatabase($filename, $description, $author, $date, $orgname, $md5 ,$songname)
+public function CreateDatabase($filename, $description, $author, $date, $orgname, $md5 ,$songname)
     {
 
         $musics = R::dispense('testmusic');
@@ -46,7 +47,7 @@ class Upload
     }
     public function UploadMusic($filename, $comment, $author, $dateTime, $tmpName, $pathFile, $orgname, $md5, $songname)
     {
-        R::setup('mysql:host=localhost; dbname=musicdocs', 'root', '1234');
+        $this->ConnectDB();
         //$i=0;
         echo '<pre>';
         $md5Music = R::getRow('SELECT * FROM testmusic WHERE md5 LIKE ? LIMIT 1', [$md5]);

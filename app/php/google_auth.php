@@ -20,7 +20,7 @@ class GoogleAutorization extends page_public
             'scope' => 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
         );
 
-        echo $link = '<p><a src="./app/images/facebook_login.png" href="' . $url . '?' . urldecode(http_build_query($params)) . '"><img src="./app/images/facebook_login.png"></a></p>';
+        echo $link = '<p><a src="./app/images/facebook_login.png" href="' . $url . '?' . urldecode(http_build_query($params)) . '"><img src="./app/images/google_plus_login.png"></a></p>';
 
         // https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost/google-auth&response_type=code&client_id=333937315318-fhpi4i6cp36vp43b7tvipaha7qb48j3r.apps.googleusercontent.com&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
         if (!empty($_GET['code'])) {

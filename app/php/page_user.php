@@ -1,6 +1,7 @@
 <?php
-require_once(__DIR__ . '/dataprocessing.php');
 require_once(__DIR__ . '/rb.php');
+require_once(__DIR__ . '/dataprocessing.php');
+
 
 class page_user extends dataprocessing
 {

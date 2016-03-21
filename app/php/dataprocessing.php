@@ -62,6 +62,7 @@ class dataprocessing
         //осуществляем поиск $login в базе данных
 
         $result = R::exec("select id from users where user_login = ?",[$login]);
+        var_dump($result);
         //получаем количество результатов поиска
         //$colich_results = $result->num_rows;
         //возвращаем количество результатов поиска
@@ -79,6 +80,22 @@ class dataprocessing
         //$colich_results = $result->num_rows;
         //возвращаем количество результатов поиска
         return $result;
+    }
+    public function CheckTable($table){
+        $uer = R::exec("SHOW TABLES LIKE ?", [$table]);
+        if (!$uer) {
+            $user = R::exec('create table users
+            (
+            id integer not null auto_increment primary key,
+            user_login varchar(20),
+            user_passwd varchar(40),
+            user_email varchar(35),
+            user_name varchar(60),
+            user_city varchar(30),
+            user_phone varchar(11)
+            )');
+            R::store($user);
+        }
     }
 }
 
