@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_user.php');
+require_once(__DIR__ . '../page_user.php');
 
 class index extends page_user
 {

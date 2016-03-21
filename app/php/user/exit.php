@@ -1,5 +1,5 @@
 <?php
-require_once('../page_public.php');
+require_once('../page_user.php');
 
 class exitPage extends page_user
 {
