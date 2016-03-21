@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_public.php');
+require_once(__DIR__ . '/page_public.php');
 
 class registration extends page_public
 {
@@ -48,6 +48,8 @@ class registration extends page_public
                                               true)
                                               ");
                         echo "Вы зарегестрированы!";
+
+                        header("Location: http://localhost:8080/IOMusicProject/index.php");
                         //echo "</center><center><a href='./index.php'>На указанный почтовый ящик отправлено письмо с ссылкой для активации вашего личного кабинета.</a></center>";
                     } else
                         echo '<center><a href="./registration_form.php">Такой email уже есть в системе.</a></center>';

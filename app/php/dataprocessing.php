@@ -1,15 +1,15 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/rb.php');
+require_once(__DIR__ . '/rb.php');
 
 //класс для обработки данных, этот класс является родителем всех остальных
-session_start();
+
 class dataprocessing
 {
 
     //конструктор класса dataprocessing
     public function __construct()
     {
-
+        session_start();
         @ $sessionGoogle = $_GET['session'];
 
         if(empty($_SESSION['username'])){
@@ -61,7 +61,7 @@ class dataprocessing
 
         //осуществляем поиск $login в базе данных
 
-        $result = R::exec("select user_id from users where user_login = ?",[$login]);
+        $result = R::exec("select id from users where user_login = ?",[$login]);
         //получаем количество результатов поиска
         //$colich_results = $result->num_rows;
         //возвращаем количество результатов поиска
@@ -74,7 +74,7 @@ class dataprocessing
         //соединяемся с бд
         //$this->ConnectDB();
         //осуществляем поиск $email в базе данных
-        $result = R::exec("select user_id from users where user_email = ?",[$email]);
+        $result = R::exec("select id from users where user_email = ?",[$email]);
         //получаем количество результатов поиска
         //$colich_results = $result->num_rows;
         //возвращаем количество результатов поиска

@@ -1,6 +1,6 @@
 <?php
 // подключаем файл с классом dataprocessing
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/dataprocessing.php');
+require_once(__DIR__ . '/dataprocessing.php');
 
 // создаем класс для отображения общедоступных страниц скрипта page_user
 // и наследуем его от dataprocessing

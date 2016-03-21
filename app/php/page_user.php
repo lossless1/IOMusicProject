@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/dataprocessing.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/rb.php');
+require_once(__DIR__ . '/dataprocessing.php');
+require_once(__DIR__ . '/rb.php');
 
 class page_user extends dataprocessing
 {

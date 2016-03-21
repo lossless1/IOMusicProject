@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_user.php');
+require_once('../page_public.php');
 
 class exitPage extends page_user
 {

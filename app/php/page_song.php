@@ -1,6 +1,6 @@
 <?php
 include "./rb.php";
-include_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_public.php');
+require_once(__DIR__ . '/page_public.php');
 
 class Song extends page_public
 {
@@ -45,7 +45,11 @@ class Song extends page_public
 
                     tagSong.append(nameObject);
                     tagSong.append(audioObject);
+                    <?php if(!empty($_SESSION['username'])){?>
                     tagSong.append(buttonObject);
+                    <?php
+                    }
+                    ?>
                     tagSong.append($("<br>"));
 
 

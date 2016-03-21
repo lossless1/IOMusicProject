@@ -1,8 +1,9 @@
 <?php
 session_start();
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/rb.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_public.php');
+require_once(__DIR__ . '/rb.php');
 
-class FacebookLogin
+class FacebookLogin extends page_public
 {
     public function FaceBookLogin()
     {
@@ -50,6 +51,9 @@ class FacebookLogin
 
         if ($result) {
             $_SESSION['username'] = $userInfo['name'];
+            $this->ConnectDB();
+            $users = R::dispense('users');
+            $searchuser = $this->
             //echo "Здравствуйте ".$userInfo['name'].". Вы выполнили вход!<br>";
             //$this->setInterval(function(){
             header("Location: http://localhost:8080/IOMusicProject/app/php/page_search_public.php");

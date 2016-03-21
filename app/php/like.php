@@ -3,7 +3,7 @@
 
 include_once("./rb.php");
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_public.php');
+require_once(__DIR__ . '/page_public.php');
 
 class Likes extends page_public
 {

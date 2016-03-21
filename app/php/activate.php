@@ -1,7 +1,7 @@
 <?php
 //этот файл имеет только одну функцию, принимать значение хеш кода через
 //get запрос и активировать пользователя, если найдется указанных хеш код
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_public.php');
+require_once(__DIR__ . '/page_public.php');
 
 class activate extends page_public
 {

@@ -1,7 +1,7 @@
 <?php
 //подключаем класс page_public
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/page_public.php');
+require_once(__DIR__ . '/app/php/page_public.php');
 
 //require_once($_SERVER['DOCUMENT_ROOT'] . '/IOMusicProject/app/php/google_auth.php');
 //создаем класс для главной страницы и наследуем все свойства от page_public
@@ -74,8 +74,8 @@ class index extends page_public
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <div align="center" id="googleLg"></div>
-                            <div align="center" id="loginFb"></div>
+                            <p id="googleLg"></p>
+                            <p id="loginFb"></p>
                         </td>
 
                     </tr>
