@@ -1,0 +1,3 @@
+php_value upload_max_filesize 24M
+php_value post_max_size 24M
+AddDefaultCharset UTF-8
