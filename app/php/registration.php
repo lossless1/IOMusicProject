@@ -16,7 +16,6 @@ class registration extends page_public
         $user_city = $this->CheckUserData($_POST['user_city']);
         $user_phone = $this->CheckUserData($_POST['user_phone']);
 
-        //$uers = R::dispense('testmusic');
         $table = 'users';
         $this->CheckTable($table);
 
