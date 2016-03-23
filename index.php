@@ -57,15 +57,15 @@ class index extends page_public
             ?>
 
             <form action="./app/php/user/index.php" method="post">
-                <table border="0" width="50%" align="center">
+                <table border="0" width="30%" align="center">
                     <tbody>
                     <tr>
-                        <td>Логин</td>
-                        <td><input  name="user_login" size="50%" type="text"/></td>
+
+                        <td align="center">Логин:<input  name="user_login" width="100%" type="text"/></td>
                     </tr>
                     <tr>
-                        <td>Пароль</td>
-                        <td><input name="user_passwd" size="50%" type="password"/></td>
+
+                        <td align="center">Пароль:<input name="user_passwd" width="100%" type="password"/></td>
                     </tr>
                     <tr>
                         <td align="center" valign="top" colspan="2">

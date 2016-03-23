@@ -1,5 +1,7 @@
 <?php
 require_once(__DIR__ . '/page_public.php');
+require_once(__DIR__ . '/rb.php');
+
 class GoogleAutorization extends page_public
 {
     public function GoogleAutorization()
@@ -54,21 +56,37 @@ class GoogleAutorization extends page_public
                     $result = true;
                     if ($result) {
                         //echo "Социальный ID пользователя: " . $userInfo['id'] . '<br />';
-                        ///echo "Имя пользователя: " . $userInfo['name'] . '<br />';
-                        $_SESSION['username'] = $userInfo['name'];
-                        header("Location: http://localhost:8080/IOMusicProject/app/php/page_search_public.php");
-                        ///var_dump([$_SESSION]);
+                        //echo "Имя пользователя: " . $userInfo['name'] . '<br />';
+                        ////var_dump([$_SESSION]);
                         //echo "Email: " . $userInfo['email'] . '<br />';
                         //echo "Ссылка на профиль пользователя: " . $userInfo['link'] . '<br />';
                         //echo "Пол пользователя: " . $userInfo['gender'] . '<br />';
                         //echo '<img src="' . $userInfo['picture'] . '" />'; echo "<br />";
+
+                        $username = $userInfo['name'];
+                        $_SESSION['username'] = $userInfo['name'];
+                        $this->ConnectDB();
+
+                        $checkuser = R::findOne('users', 'user_login = ?', [$username]);
+
+                        if (!$checkuser) {
+                            $users = R::dispense('users');
+                            $users['user_login'] = $userInfo['name'];
+                            $users['user_password'] = null;
+                            $users['user_email'] = $userInfo['email'];
+                            $users['user_gender'] = $userInfo['gender'];
+                            $users['user_googleid'] = $userInfo['id'];
+                            $users['user_link_to_profile'] = $userInfo['link'];
+                            R::store($users);
+                            header("Location: ./page_search_public.php");
+                        } else {
+                            header("Location: ./page_search_public.php");
+                        }
                     }
                 }
             }
         }
-
     }
-
 }
 
 $google = new GoogleAutorization();
