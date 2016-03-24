@@ -10,7 +10,6 @@ class dataprocessing
     public function __construct()
     {
         session_start();
-        @ $sessionGoogle = $_GET['session'];
 
         if(empty($_SESSION['username'])){
 

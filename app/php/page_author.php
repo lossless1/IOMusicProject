@@ -22,55 +22,44 @@ class Author extends page_public
             <script src="../scripts/sendMusic.js"></script>
             <script>
                 $(document).ready(function () {
+
+                    var author = '<?php echo $author;?>';
+
+                    $("#subscribe").click(function (){
+                        $.get('./user/subscription.php',
+                            {
+                                author :  author
+                            },
+                            function (data){
+                                $("#subscribe").text(data);
+                            });
+                    });
+
                     <?php
                     for($i = 0;$i < count($likesDb);$i++) {
 
                     ?>
-                    var nameObject, fullname, urlname, audioObject, buttonObject, likesDb, tagSong;
+                    var nameObject, fullname, urlname, audioObject, likesDb, tagSong;
                     tagSong = $("#music");
                     filename = "<?php echo $likesDb[$i]['filename'];?>";
                     fullname = "<?php echo str_replace($array, " ", $likesDb[$i]['filename']); ?>";
                     urlname = "../../media/uploadform/" + filename;
 
-                    likesDb = "<?php echo $likesDb[$i]['likes']; ?>";
 
                     audioObject = BuildAudioObject(urlname);
                     nameObject = NameObject(fullname);
-                    //buttonObject = ButtonObject(likesDb);
-
                     tagSong.append(nameObject);
                     tagSong.append(audioObject);
-                    //tagSong.append(buttonObject);
+
                     tagSong.append($("<br>"));
-                    //$("#button").click(function () {
-                    //    $.get("like.php",
-                    //        {
-                    //            song_id: "<?php
-                    //                if (!empty($_SESSION['username'])) {
-                    //                    print_r($likesDb[$i]['id']);
-                    //                }?>",
-                    //        },
-                    //        function (data) {
-                    //            $("#button").html(data);
-                    //        });
-                    //});
-                });
-
-
                 <?php
                 }?>
-
+                });
                 function NameObject(fullname) {
                     nameObject = $("<div>");
                     nameObject.html(fullname);
                     return nameObject;
                 }
-                //function ButtonObject(likesDb) {
-                //    buttonObject = $("<button>");
-                //    buttonObject.attr("id", "button");
-                //    buttonObject.html(likesDb);
-                //    return buttonObject;
-                //}
 
             </script>
 
@@ -78,16 +67,14 @@ class Author extends page_public
         <body>
         <center>
             <div id="music">
-                Stranica s autorom!<br><br>
+                Страница с автором!<br>
+                <font size="10"><?php echo $author;?></font><br>
+                <button id="subscribe">Подписаться на этого автора.</button>
+                <br><br><br>
             </div>
         </center>
         </body>
         <?php
-    }
-
-    public function Author()
-    {
-
     }
 }
 

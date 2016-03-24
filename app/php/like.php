@@ -9,7 +9,6 @@ class Likes extends page_public
 {
     public function Likes()
     {
-
         if (!isset($_GET) || !isset($_GET["song_id"])) {
             die('stop');
         }
@@ -34,11 +33,9 @@ class Likes extends page_public
             $likes["idUser"] = $iduser;
 
             $likes["idSong"] = $idsong;
-
             //R::exec("UPDATE likes SET idUser = ?, idSong = ?, likes = ?",[$idUser,$idSong,$likes]);
             R::store($likes);
         } else {
-            echo 0;
 
             R::trash($likes);
 
