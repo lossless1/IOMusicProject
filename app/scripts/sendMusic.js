@@ -5,8 +5,7 @@ function sendMusic() {
     textID = document.getElementById('name');
     textID = textID.value;
     url = "../php/search_server_music.php";
-    $.ajax(
-        {
+    $.ajax({
             url: url,
             method: "GET",
             data: {name: textID},
@@ -29,9 +28,11 @@ function CreateTag(data) {
 
     tagSong = $("#song");
 
-    audioObject = BuildAudioObject(data.source);
+
     nameObject = BuildNameObject(data);
     authorObject = BuildAuthorObject(data);
+    audioObject = BuildAudioObject(data.source);
+
 
     tagSong.append(nameObject);
     tagSong.append(authorObject);
@@ -57,7 +58,7 @@ function BuildAuthorObject(data){
     author.html("<b>Author:</b>");
 
     authorObject = $("<a>");
-    authorObject.attr("href","../php/page_author.php?id="+data.id+"&author="+data.author);/////
+    authorObject.attr("href","../php/page_author.php?author="+data.author);/////
     authorObject.html(data.author);
     author.append(authorObject);
     return author;
@@ -74,4 +75,15 @@ function BuildAudioObject(url) {
     sourceObject.attr("type", "audio/ogg");
     audioObject.append(sourceObject);
     return audioObject;
+}
+function BuildAuthorArray(author){
+    var authorTag;
+    authorTag = $("<div>");
+    authorTag.html("<b>Author:</b>");
+
+    authorObject = $("<a>");
+    authorObject.attr("href","../page_author.php?author="+author);
+    authorObject.html(author);
+    authorTag.append(authorObject);
+    return authorTag;
 }

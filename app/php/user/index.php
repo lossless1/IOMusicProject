@@ -5,8 +5,13 @@ class index extends page_user
 {
     public function Content()
     {
-        echo "<center>Личный кабинет.</center>";
-        echo "<a href='./subscription.php'>Подписки на песни</a>";
+        ?>
+        <center>
+            Личный кабинет. <br>
+
+            <a href='./subscription.php'>Подписки на песни</a>
+        </center>
+        <?php
     }
 }
 

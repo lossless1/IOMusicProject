@@ -6,7 +6,7 @@ class Song extends page_public
 {
     public function Content()
     {
-        R::setup('mysql:host=localhost; dbname=musicdocs', 'root', '1234');
+        $this->ConnectDB();
         $fullname = $_GET['fullname'];
         $array = array("_(zaycev.net)", ".mp3", ".mp4", ".mpeg","_");
         $likesDb = R::getRow('SELECT * FROM testmusic WHERE filename = ?', [$fullname]);

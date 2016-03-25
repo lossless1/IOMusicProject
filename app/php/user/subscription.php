@@ -7,9 +7,11 @@ class Subscriptions extends page_user
 {
     public function Subscriptions()
     {
-
-        $this->AddSubscription();
-        //$this->ShowSubscription();
+        if (isset($_GET['author'])) {
+            $this->AddSubscription();
+        } else {
+            $this->ShowSubscription();
+        }
 
     }
 
@@ -19,40 +21,39 @@ class Subscriptions extends page_user
 
         $this->DisplayPage();
 
-        $useridfromusers = R::findOne('users','user_login = ?',[$_SESSION['username']]);
+        $useridfromusers = R::findOne('users', 'user_login = ?', [$_SESSION['username']]);
 
-        $userid = R::getAll('SELECT * FROM subscriptions WHERE userid = ?',[$useridfromusers['id']]);
-        echo "<pre>";
-        var_dump($userid);
+        $userid = R::getAll('SELECT * FROM subscriptions WHERE userid = ?', [$useridfromusers['id']]);
+
 
         ?>
         <head>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
+            <script src="../../scripts/sendMusic.js"></script>
             <script>
-                $(document).ready(function(){
-                    authorObject = BuildAuthorObject(data);
-                    tagSong.append(authorObject);
+                $(document).ready(function () {
+                    <?php for($i = 0;$i < count($userid);$i++)
+                    {
+                    ?>
+                    $author = '<?php echo $userid[$i]['author']; ?>';
 
+                    authorObject = BuildAuthorArray($author);
+                    $("#authors").append(authorObject);
+
+                    <?php
+                    }
+                    ?>
                 });
 
-                function BuildAuthorObject(data){
-                    var author;
-                    author = $("<div>");
-                    author.html("<b>Author:</b>");
 
-                    authorObject = $("<a>");
-                    authorObject.attr("href","../page_author.php?id="+data.id+"&author="+data.author);/////
-                    authorObject.html(data.author);
-                    author.append(authorObject);
-                    return author;
-                }
             </script>
         </head>
         <body>
-            <div id="authors">
+        <br>
+        <div id="authors">
 
-            </div>
+        </div>
+
         </body>
 
 
@@ -67,7 +68,9 @@ class Subscriptions extends page_user
         $subs = R::dispense('subscriptions');
         $userid = R::findOne('users', 'user_login = ?', [$_SESSION['username']]);
 
-        $checksub = R::findOne('subscriptions', 'userid = ?', [$userid['id']]);
+        $checksub = R::findOne('subscriptions', 'author = ? AND userid = ?', [$_GET['author'], $userid['id']]);
+
+        //var_dump($checksub);
 
         if (!$checksub) {
             $subs['userid'] = $userid['id'];
@@ -80,6 +83,28 @@ class Subscriptions extends page_user
             echo 'Отписано';
         }
     }
+
+    public function BeanToArray($bean)
+    {
+        $data = array();
+        foreach ($bean as $beanKey => $beanValue) {
+
+            $data[$beanKey] = $beanValue;
+        }
+        return $data;
+    }
+
+    public function BeansToArray($beans)
+    {
+        $result = array();
+        foreach ($beans as $beansKey => $beansValue) {
+            $data = BeanToArray($beansValue);
+            $result[] = $data;
+        }
+
+        return $result;
+    }
+
 }
 
 $subscr = new Subscriptions();

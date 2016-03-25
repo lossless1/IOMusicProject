@@ -25,12 +25,12 @@ class Author extends page_public
 
                     var author = '<?php echo $author;?>';
 
-                    $("#subscribe").click(function (){
+                    $("#subscribe").click(function () {
                         $.get('./user/subscription.php',
                             {
-                                author :  author
+                                author: author
                             },
-                            function (data){
+                            function (data) {
                                 $("#subscribe").text(data);
                             });
                     });
@@ -52,8 +52,8 @@ class Author extends page_public
                     tagSong.append(audioObject);
 
                     tagSong.append($("<br>"));
-                <?php
-                }?>
+                    <?php
+                    }?>
                 });
                 function NameObject(fullname) {
                     nameObject = $("<div>");
@@ -68,7 +68,7 @@ class Author extends page_public
         <center>
             <div id="music">
                 Страница с автором!<br>
-                <font size="10"><?php echo $author;?></font><br>
+                <font size="10"><?php echo $author; ?></font><br>
                 <button id="subscribe">Подписаться на этого автора.</button>
                 <br><br><br>
             </div>
