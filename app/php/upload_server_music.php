@@ -5,6 +5,7 @@ require_once(__DIR__ . '/page_public.php');
 class Upload
 {
     public $array, $uploadDir, $tmpName, $pathFile, $orgname, $filename, $dateTime, $comment, $author, $uniqid, $songname;
+
     public function Upload()
     {
         $array = array("_(zaycev.net)", ".mp3", ".mp4", ".mpeg");
@@ -30,9 +31,10 @@ class Upload
 
         }
     }
-public function CreateDatabase($filename, $description, $author, $date, $orgname, $md5 ,$songname)
-    {
 
+    public function CreateDatabase($filename, $description, $author, $date, $orgname, $md5, $songname)
+    {
+        global $array;
         $musics = R::dispense('testmusic');
         $musics["filename"] = $filename;
         $musics["description"] = $description;
@@ -42,9 +44,9 @@ public function CreateDatabase($filename, $description, $author, $date, $orgname
         $musics["orgname"] = $orgname;
         $musics["md5"] = $md5;
         $musics["likes"] = 0;
-
         R::store($musics);
     }
+
     public function UploadMusic($filename, $comment, $author, $dateTime, $tmpName, $pathFile, $orgname, $md5, $songname)
     {
         $this->ConnectDB();
@@ -66,22 +68,25 @@ public function CreateDatabase($filename, $description, $author, $date, $orgname
             }
             echo 'Here is some more debugging info:<br><br>';
             //print_r($GLOBALS["orgname"]);
-            echo " Успешно загружен " . $author."-".$songname;
+            echo " Успешно загружен " . $author . "-" . $songname;
             echo "<br>";
             echo '<pre>';
         }
 
     }
+
     public function Author($orgname)
     {
-        $arrayAuthor = explode("-",$orgname);
-        $arrayAuthor = str_replace("_"," ",$arrayAuthor);
+        $arrayAuthor = explode("-", $orgname);
+        $arrayAuthor = str_replace("_", " ", $arrayAuthor);
         $stringAuthor = ucwords($arrayAuthor[0]);
         return $stringAuthor;
     }
-    public function SongName($orgname){
-        $arraySongName = explode("-",$orgname);
-        $arraySongName = str_replace("_"," ",$arraySongName);
+
+    public function SongName($orgname)
+    {
+        $arraySongName = explode("-", $orgname);
+        $arraySongName = str_replace("_", " ", $arraySongName);
         return $arraySongName[1];
     }
 }

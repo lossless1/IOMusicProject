@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/page_public.php');
 require_once(__DIR__ . '/rb.php');
-
+session_start();
 class GoogleAutorization extends page_public
 {
     public function GoogleAutorization()
@@ -64,6 +64,7 @@ class GoogleAutorization extends page_public
                         //echo '<img src="' . $userInfo['picture'] . '" />'; echo "<br />";
 
                         $username = $userInfo['name'];
+                        //var_dump($username);
                         $_SESSION['username'] = $userInfo['name'];
                         $this->ConnectDB();
 

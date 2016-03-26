@@ -1,8 +1,8 @@
 <?php
-session_start();
+
 require_once(__DIR__ . '/page_public.php');
 require_once(__DIR__ . '/rb.php');
-
+session_start();
 class FacebookLogin extends page_public
 {
     public function FaceBookLogin()
